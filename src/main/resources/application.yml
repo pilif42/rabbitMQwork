@@ -1,0 +1,21 @@
+logging:
+  level:
+    com.example.tutorial: DEBUG
+    org.springframework: WARN
+
+spring:
+  output:
+    ansi:
+      enabled: never
+  application:
+    name: RabbitMQ Client
+
+# queue service related
+rabbitmq:
+  username: guest
+  password: guest
+  host: localhost
+  port: 6672
+  virtualhost: /
+  # When using publisher confirms, the cache size needs to be large enough otherwise channels can be closed before confirms are received.
+  channelCacheSize: 100
