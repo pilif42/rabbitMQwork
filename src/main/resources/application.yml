@@ -19,3 +19,12 @@ rabbitmq:
   virtualhost: /
   # When using publisher confirms, the cache size needs to be large enough otherwise channels can be closed before confirms are received.
   channelCacheSize: 100
+
+messaging:
+  backoffInitial: 5000
+  backoffMultiplier: 3
+  backoffMax: 45000
+  consumingThreads: 1
+  maxAttempts: 3
+  prefetchCount: 10
+  txSize: 1

@@ -1,0 +1,16 @@
+<ins:actionInstruction xmlns:ins="http://ons.gov.uk/ctp/response/action/message/instruction">
+  <!--You have a CHOICE of the next 3 items at this level-->
+  <actionRequest>
+    <actionId>string</actionId>
+    <responseRequired>false</responseRequired>
+    <actionType>string</actionType>
+    <address>
+      <sampleUnitRef>string</sampleUnitRef>
+    </address>
+    <iac>string</iac>
+    <events>
+      <!--Zero or more repetitions:-->
+      <event>string</event>
+    </events>
+  </actionRequest>
+</ins:actionInstruction>

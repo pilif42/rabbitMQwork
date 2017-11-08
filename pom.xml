@@ -25,21 +25,50 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- start of section for actionsvc-api -->
+		<dependency>
+			<groupId>net.codesup.util</groupId>
+			<artifactId>jaxb2-rich-contract-plugin</artifactId>
+			<version>1.18.0</version>
+		</dependency>
+		<!-- end of section for actionsvc-api -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-xml</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-amqp</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.16.18</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.rabbitmq</groupId>
-			<artifactId>amqp-client</artifactId>
-			<version>5.0.0</version>
 		</dependency>
 
 		<dependency>
@@ -54,6 +83,88 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<id>inbound</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<bindingDirectory>src/main/resources/actionsvc/xsd</bindingDirectory>
+							<bindingIncludes>
+								<include>actionFeedback.xjb</include>
+							</bindingIncludes>
+							<bindingExcludes>
+								<include>actionInstruction.xjb</include>
+							</bindingExcludes>
+							<schemaDirectory>src/main/resources/actionsvc/xsd</schemaDirectory>
+							<schemaIncludes>
+								<include>actionFeedback.xsd</include>
+							</schemaIncludes>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc/inbound</generateDirectory>
+							<args>
+								<arg>-Xvalue-constructor</arg>
+								<arg>-Xfluent-builder</arg>
+								<arg>-generateTools=n</arg>
+							</args>
+							<plugins>
+								<plugin>
+									<groupId>net.codesup.util</groupId>
+									<artifactId>jaxb2-rich-contract-plugin</artifactId>
+									<version>1.18.0</version>
+								</plugin>
+								<plugin>
+									<groupId>org.jvnet.jaxb2_commons</groupId>
+									<artifactId>jaxb2-value-constructor</artifactId>
+									<version>3.0</version>
+								</plugin>
+							</plugins>
+						</configuration>
+					</execution>
+					<execution>
+						<phase>generate-sources</phase>
+						<id>outbound</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<bindingDirectory>src/main/resources/actionsvc/xsd</bindingDirectory>
+							<bindingIncludes>
+								<include>actionInstruction.xjb</include>
+							</bindingIncludes>
+							<bindingExcludes>
+								<include>actionFeedback.xjb</include>
+							</bindingExcludes>
+							<schemaDirectory>src/main/resources/actionsvc/xsd</schemaDirectory>
+							<schemaIncludes>
+								<include>actionInstruction.xsd</include>
+							</schemaIncludes>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc/outbound</generateDirectory>
+							<args>
+								<arg>-Xvalue-constructor</arg>
+								<arg>-Xfluent-builder</arg>
+								<arg>-generateTools=n</arg>
+							</args>
+							<plugins>
+								<plugin>
+									<groupId>net.codesup.util</groupId>
+									<artifactId>jaxb2-rich-contract-plugin</artifactId>
+									<version>1.18.0</version>
+								</plugin>
+								<plugin>
+									<groupId>org.jvnet.jaxb2_commons</groupId>
+									<artifactId>jaxb2-value-constructor</artifactId>
+									<version>3.0</version>
+								</plugin>
+							</plugins>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
