@@ -1,11 +1,17 @@
 <ins:actionInstruction xmlns:ins="http://ons.gov.uk/ctp/response/action/message/instruction">
   <!--You have a CHOICE of the next 3 items at this level-->
   <actionRequest>
-    <actionId>string</actionId>
+    <actionId>123</actionId>
     <responseRequired>false</responseRequired>
-    <actionType>string</actionType>
+    <actionType>actionType</actionType>
+    <contact>
+      <title>Mr</title>
+      <forename>Lionel</forename>
+      <surname>Messi</surname>
+      <emailAddress>messi@gmail.com</emailAddress>
+    </contact>
     <address>
-      <sampleUnitRef>string</sampleUnitRef>
+      <sampleUnitRef>123456</sampleUnitRef>
     </address>
     <iac>string</iac>
     <events>
