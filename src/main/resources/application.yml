@@ -1,14 +1,14 @@
-logging:
-  level:
-    com.example.tutorial: DEBUG
-    org.springframework: WARN
-
 spring:
   output:
     ansi:
       enabled: never
   application:
     name: RabbitMQ Client
+
+logging:
+  level:
+    com.example.tutorial: DEBUG
+    org.springframework: WARN
 
 # queue service related
 rabbitmq:
@@ -21,6 +21,7 @@ rabbitmq:
   channelCacheSize: 100
 
 messaging:
+  queueName: Action.Notify
   backoffInitial: 5000
   backoffMultiplier: 3
   backoffMax: 45000
