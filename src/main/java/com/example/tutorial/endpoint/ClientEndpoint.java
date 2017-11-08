@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ClientEndpoint {
 
-  @RequestMapping(value = "/readFromQueue/{queueName}", method = RequestMethod.GET)
+  @RequestMapping(value = "/readFromQueue", method = RequestMethod.GET)
   public ResponseEntity triggerReadingFromQueue() {
     log.debug("triggerReadingFromQueue...");
     String queueName = "Action.Notify";
